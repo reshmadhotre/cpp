@@ -1,0 +1,266 @@
+morgan-stanley
+==================
+class abc
+{
+  abc & abc(abc&& r)
+  {
+	t = r.t;
+	r.t = 0;
+	
+	why do we move =0;
+  }
+  
+  
+  int t;
+  };
+  
+  int i=7;
+  int &j=i;
+  
+  const int &k=i
+  
+  int &i=7// error
+  const int &i = 7 //ok
+  int &&i = 7 //ok
+  
+  lv = memory
+  rv= value/does not 
+  
+  abc(int &&r)
+  {
+  
+  }
+  
+  auto_ptr why they were deprecated
+  
+   std::auto_ptr<T> ap(new T{...});       // OK - alloc/construct, up owns
+   ...or...
+   std::auto_ptr<T> ap(get_ap_to_T());   // OK - take expiring ownership
+
+   ...then...
+=> std::auto_ptr<T> ap2(ap);  // take un-expiring ownership ala ap3(ap.release());
+   ap->xyz;  // oops... tried to use ap, expecting it to be non-NULL
+   
+   auto_ptr quietly "steals" ownership of *ap, leaving ap set to a nullptr,
+   auto_ptr moves from lvalues using copy syntax and is thus fundamentally unsafe.
+  
+  abc(5)
+  
+  vector<int> a();
+  n 
+  
+  all_of( a.begin(), a.end(), [&n](cont int a){ return a>n;});
+  
+  for_each( a.begin(), a.end(), [&n](cont int a){ if a>n
+	cout<<a<<std::endl;});
+  
+  for(auto c:a)
+	{
+	if (c>n)
+	printf(c)
+	}
+	
+	class base
+		virtual
+	
+	class der1 : virtual public base
+		virtual ()
+	class der2 : virtual public base
+	
+	class der3: public der1,der2
+  
+  {
+  base *b  = std:make_unique<der1>()
+  base *b = new der1();
+
+  }
+  
+  
+  class a
+  clas b :a
+  class c: b
+  
+  a *bptr = new c;
+  delete a
+  
+  topview(tree *t, tree* top)
+  {
+	if (t==nullptr)
+		return;
+		
+	if(t
+	
+  }
+  
+  priority queues
+  
+  virtual inheritance
+  move constructors
+  
+  data structures
+  (vector, list, unordered_map/map)
+  
+  Why RB trees are used to implement maps instead of bST.
+    
+  Probably the two most common self balancing tree algorithms are Red-Black trees and AVL trees. To balance the tree after an insertion/update both algorithms use the notion of rotations where the nodes of the tree are rotated to perform the re-balancing.
+
+While in both algorithms the insert/delete operations are O(log n), in the case of Red-Black tree re-balancing rotation is an O(1) operation while with AVL this is a O(log n) operation, making the Red-Black tree more efficient in this aspect of the re-balancing stage and one of the possible reasons that it is more commonly used.
+
+  
+  CS:
+  
+  noexcept 
+  
+  
+NOKIA
+=======
+  #include<iostream>
+#include<memory>
+
+template<typename T>
+class SmartPtr
+{
+    T* pdata{nullptr};
+
+    public:
+
+    SmartPtr(T * ptr): pdata(ptr)
+    { 
+        std::cout<<"ctor"<<std::endl;
+    }
+
+    SmartPtr():  pdata(nullptr) 
+    {
+        std::cout<<"nullptr ctor"<<std::endl;
+    }
+
+    ~SmartPtr()
+    {
+        delete pdata;
+        std::cout<<"dtor"<<std::endl;
+    }
+
+    SmartPtr(const SmartPtr& other) = delete; 
+    SmartPtr& operator=(const SmartPtr& other) = delete; 
+
+    T& operator*() { return *pdata; }
+    T* operator->() { return pdata; }
+    T* get() { return pdata; }
+
+};
+
+
+class base
+{
+    public:
+    virtual int func()
+    {
+         std::cout<<" base func"<<std::endl;
+         return 0;
+    }
+
+
+    virtual ~base()
+    {}
+};
+
+class derived: public base
+{
+    virtual int func() override
+    {
+        std::cout<<"derivedfunc"<<std::endl;
+        return 0;
+    }
+
+    int func1() 
+    {
+        std::cout<<"fun1 "<<std::endl;
+        return 0;
+    }
+};
+
+int main()
+{
+    {
+        //SmartPtr<int> int_data =  new(SmartPtr<int>(int());
+        //*int_data = 10;
+
+        auto up = std::make_unique<int>(10);
+        //std::unique_ptr<int> up1 = new (std::unique_ptr<int>());
+       // *up1= 10;
+
+    }
+
+    {
+        
+        derived d;
+
+        base *bptr = &d;
+        bptr->func();
+
+        derived d1;
+
+        //bptr->func1();
+
+        derived *d1 = d ;
+        if (d1 = dynamic_cast<derived*>(bptr) != nullptr)
+        {
+
+
+        }
+
+
+
+    }
+
+
+    return 0;
+}
+
+
+server: multiple clients
+update to client 
+all receive the clients should receive the update
+else
+rollback
+
+ack = c1, c2  ,,,
+
+atomic
+
+
+class server
+{
+    set<client> 
+    map<ids: acks>
+
+    update(
+        for set
+        { cleitn update()
+        acks->receive()}
+   )
+
+   rollback()
+   {
+    for acks:
+        if ack=fail
+        {
+            for client:clients:
+                client->rollback();
+        }
+   }
+
+   process()
+   {
+    update()
+    rollback();
+   }
+
+
+}
+
+How vtable/vptr is implemented
+  
+  
+weak pointers
+Detailed work profile of Ros2/Ros1
